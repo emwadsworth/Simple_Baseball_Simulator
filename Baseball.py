@@ -209,9 +209,11 @@ def Run_Program():
     Plays, Runs = Stats(1000)    # games
     SF = pd.DataFrame([Plays, Runs], index=['Plays','Runs'])
     SF = SF.T
-    print(SF.describe().round(2))     
+    print(f'Stats for {Games!r} games:')
+    print(SF.describe().iloc[1:].round(2))
     SF.hist(column='Plays', grid=True, color='r', rwidth=0.9)
     SF.hist(column='Runs', grid=True, color='g', rwidth=0.9)
+    return SF
 
 if __name__ == '__main__':
     Run_Program()
