@@ -37,12 +37,12 @@ def Game_Over():
             Game_Over = False
         if GSB['Bat_Team_Status']['Outs'] < 3 and GSB['Score'][Team[0]] > GSB['Score'][Team[1]]:
             Game_Over = False
-# tie game at bottom of ninth:               
-#       if GSB['Score'][Team[0]] == GSB['Score'][Team[1]]:
-#           Game_Over = False    
-# overtime option, continue until one team scores
-#   if GSB['Inning'] > 9 and GSB['Score'][Team[0]] == GSB['Score'][Team[1]]:
-#       Game_Over = False
+   # tie game at bottom of ninth:               
+        if GSB['Score'][Team[0]] == GSB['Score'][Team[1]]:
+            Game_Over = False    
+   # overtime option, continue until one team scores
+    if GSB['Inning'] > 9 and GSB['Score'][Team[0]] == GSB['Score'][Team[1]]:
+            Game_Over = False
     return Game_Over
 
 def Team_Up():
@@ -189,7 +189,6 @@ def Pitch():
         
 def Game():
     InitializeGSB()
-    # InitializeCount()
     Num_of_Plays = 0
     while not Game_Over():
         Num_of_Plays += 1
