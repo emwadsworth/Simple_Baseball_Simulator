@@ -37,12 +37,12 @@ def Game_Over():
             Game_Over = False
         if GSB['Bat_Team_Status']['Outs'] < 3 and GSB['Score'][Team[0]] > GSB['Score'][Team[1]]:
             Game_Over = False
-# tie game at bottom of ninth:               
-#       if GSB['Score'][Team[0]] == GSB['Score'][Team[1]]:
-#           Game_Over = False    
-# overtime option, continue until one team scores
-#   if GSB['Inning'] > 9 and GSB['Score'][Team[0]] == GSB['Score'][Team[1]]:
-#       Game_Over = False
+   # tie game at bottom of ninth:               
+        if GSB['Score'][Team[0]] == GSB['Score'][Team[1]]:
+            Game_Over = False    
+   # overtime option, continue until one team scores
+    if GSB['Inning'] > 9 and GSB['Score'][Team[0]] == GSB['Score'][Team[1]]:
+            Game_Over = False
     return Game_Over
 
 def Team_Up():
@@ -189,7 +189,6 @@ def Pitch():
         
 def Game():
     InitializeGSB()
-    # InitializeCount()
     Num_of_Plays = 0
     while not Game_Over():
         Num_of_Plays += 1
@@ -209,9 +208,11 @@ def Run_Program():
     Plays, Runs = Stats(1000)    # games
     SF = pd.DataFrame([Plays, Runs], index=['Plays','Runs'])
     SF = SF.T
-    print(SF.describe().round(2))     
+    print(f'Stats for {Games!r} games:')
+    print(SF.describe().iloc[1:].round(2))
     SF.hist(column='Plays', grid=True, color='r', rwidth=0.9)
     SF.hist(column='Runs', grid=True, color='g', rwidth=0.9)
+    return SF
 
 if __name__ == '__main__':
     Run_Program()
